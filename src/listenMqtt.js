@@ -6,23 +6,34 @@ var mqtt = require('mqtt');
 var websocket = require('websocket-stream');
 var HttpsProxyAgent = require('https-proxy-agent');
 const EventEmitter = require('events');
-const { json } = require("body-parser");
+
 var identity = function () { };
 var form = {};
 var getSeqID = function () { };
 
-var topics = ["/legacy_web","/webrtc","/rtc_multi","/onevc","/br_sr","/sr_res","/t_ms","/thread_typing","/orca_typing_notifications","/notify_disconnect","/orca_presence","/inbox","/mercury", "/messaging_events", "/orca_message_notifications", "/pp","/webrtc_response"];
+var topics = [
+    "/legacy_web",
+    "/webrtc",
+    "/rtc_multi",
+    "/onevc",
+    "/br_sr", //Notification
+    //Need to publish /br_sr right after this
+    "/sr_res",
+    "/t_ms",
+    "/thread_typing",
+    "/orca_typing_notifications",
+    "/notify_disconnect",
+    //Need to publish /messenger_sync_create_queue right after this
+    "/orca_presence",
+    //Will receive /sr_res right here.
 
-/* [ Noti ? ]
-!   "/br_sr", //Notification
-    * => Need to publish /br_sr right after this
-   
-!   "/notify_disconnect",
-    * => Need to publish /messenger_sync_create_queue right after this
-
-!   "/orca_presence",
-    * => Will receive /sr_res right here.
-  */
+    "/inbox",
+    "/mercury",
+    "/messaging_events",
+    "/orca_message_notifications",
+    "/pp",
+    "/webrtc_response",
+];
 
 function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
     //Don't really know what this does but I think it's for the active state?
@@ -31,14 +42,32 @@ function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
     var foreground = false;
 
     var sessionID = Math.floor(Math.random() * 9007199254740991) + 1;
-    var username = {u: ctx.userID,s: sessionID,chat_on: chatOn,fg: foreground,d: utils.getGUID(),ct: "websocket",aid: "219994525426954", mqtt_sid: "",cp: 3,ecp: 10,st: [],pm: [],dc: "",no_auto_fg: true,gas: null,pack: []};
-    var cookies = ctx.jar.getCookies('https://www.facebook.com').join("; ");
+    var username = {
+        u: ctx.userID,
+        s: sessionID,
+        chat_on: chatOn,
+        fg: foreground,
+        d: utils.getGUID(),
+        ct: "websocket",
+        //App id from facebook
+        aid: "219994525426954",
+        mqtt_sid: "",
+        cp: 3,
+        ecp: 10,
+        st: [],
+        pm: [],
+        dc: "",
+        no_auto_fg: true,
+        gas: null,
+        pack: []
+    };
+    var cookies = ctx.jar.getCookies("https://www.facebook.com").join("; ");
 
     var host;
     if (ctx.mqttEndpoint) host = `${ctx.mqttEndpoint}&sid=${sessionID}`;
     else if (ctx.region) host = `wss://edge-chat.facebook.com/chat?region=${ctx.region.toLocaleLowerCase()}&sid=${sessionID}`;
     else host = `wss://edge-chat.facebook.com/chat?sid=${sessionID}`;
-   
+
     var options = {
         clientId: "mqttwsclient",
         protocolId: 'MQIsdp',
@@ -49,7 +78,7 @@ function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
             headers: {
                 'Cookie': cookies,
                 'Origin': 'https://www.facebook.com',
-                'User-Agent': (ctx.globalOptions.userAgent || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36'),
+                'User-Agent': ctx.globalOptions.userAgent,
                 'Referer': 'https://www.facebook.com/',
                 'Host': new URL(host).hostname //'edge-chat.facebook.com'
             },
@@ -57,59 +86,32 @@ function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
             protocolVersion: 13
         },
         keepalive: 10,
-        reschedulePings: true,
-        connectTimeout: 10000,
-        reconnectPeriod: 1000
+        reschedulePings: false
     };
 
     if (typeof ctx.globalOptions.proxy != "undefined") {
         var agent = new HttpsProxyAgent(ctx.globalOptions.proxy);
         options.wsOptions.agent = agent;
     }
-  
+
     ctx.mqttClient = new mqtt.Client(_ => websocket(host, options.wsOptions), options);
 
     var mqttClient = ctx.mqttClient;
+
     mqttClient.on('error', function (err) {
         log.error("listenMqtt", err);
         mqttClient.end();
         if (ctx.globalOptions.autoReconnect) getSeqID();
-        else {
-            globalCallback({ type: "stop_listen", error: "Server Đã Sập - Auto Restart" }, null);
-            return process.exit(1);
-        }
+        else globalCallback({ type: "stop_listen", error: "Connection refused: Server unavailable" }, null);
     });
 
     mqttClient.on('connect', function () {
-
-        if (process.env.OnStatus == undefined) {
-            global.Fca.Require.logger.Normal(global.Fca.Data.PremText || "Hiện Status Lỗi :s")
-            if (Number(global.Fca.Require.FastConfig.AutoRestartMinutes) == 0) {
-                // something
-            }
-            else if (Number(global.Fca.Require.FastConfig.AutoRestartMinutes < 10)) {
-                log.warn("AutoRestartMinutes","The number of minutes to automatically restart must be more than 10 minutes");
-            }
-            else if (Number(global.Fca.Require.FastConfig.AutoRestartMinutes) < 0) {
-                log.warn("AutoRestartMinutes","Invalid auto-restart minutes!");
-            }
-            else {
-                global.Fca.Require.logger.Normal(global.Fca.getText(global.Fca.Require.Language.Src.AutoRestart,global.Fca.Require.FastConfig.AutoRestartMinutes));
-                setInterval(() => { 
-                    global.Fca.Require.logger.Normal(global.Fca.Require.Language.Src.OnRestart);
-                    process.exit(1);
-                }, Number(global.Fca.Require.FastConfig.AutoRestartMinutes) * 60000);
-            }
-            require('../broadcast');
-            process.env.OnStatus = true;
-        }
-        
         topics.forEach(topicsub => mqttClient.subscribe(topicsub));
 
         var topic;
         var queue = {
-            sync_api_version: 11,
-            max_deltas_able_to_process: 100,
+            sync_api_version: 10,
+            max_deltas_able_to_process: 1000,
             delta_batch_size: 500,
             encoding: "JSON",
             entity_fbid: ctx.userID,
@@ -124,26 +126,30 @@ function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
             queue.initial_titan_sequence_id = ctx.lastSeqId;
             queue.device_params = null;
         }
-        mqttClient.publish(topic, JSON.stringify(queue), { qos: 1, retain: false });
 
-   // set status online
-    // fix by NTKhang
-    mqttClient.publish("/foreground_state", JSON.stringify({"foreground": chatOn}), {qos: 1});
+        mqttClient.publish(topic, JSON.stringify(queue), { qos: 1, retain: false });
 
         var rTimeout = setTimeout(function () {
             mqttClient.end();
             getSeqID();
-        }, 3000);
+        }, 5000);
 
         ctx.tmsWait = function () {
             clearTimeout(rTimeout);
-            ctx.globalOptions.emitReady ? globalCallback({type: "ready",error: null}) : '';
+            ctx.globalOptions.emitReady ? globalCallback({
+                type: "ready",
+                error: null
+            }) : "";
             delete ctx.tmsWait;
         };
     });
 
     mqttClient.on('message', function (topic, message, _packet) {
-            const jsonMessage = JSON.parse(message.toString());
+        try {
+            var jsonMessage = JSON.parse(message);
+        } catch (ex) {
+            return log.error("listenMqtt", ex);
+        }
         if (topic === "/t_ms") {
             if (ctx.tmsWait && typeof ctx.tmsWait == "function") ctx.tmsWait();
 
@@ -153,6 +159,7 @@ function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
             }
 
             if (jsonMessage.lastIssuedSeqId) ctx.lastSeqId = parseInt(jsonMessage.lastIssuedSeqId);
+
             //If it contains more than 1 delta
             for (var i in jsonMessage.deltas) {
                 var delta = jsonMessage.deltas[i];
@@ -186,35 +193,12 @@ function listenMqtt(defaultFuncs, api, ctx, globalCallback) {
 
     });
 
-    process.on('SIGINT', function () {
-        LogUptime();process.kill(process.pid);
-    });
-
-    process.on('exit', (code) => {
-        LogUptime();
-    });
-    
     mqttClient.on('close', function () {
-
-    });
-
-    mqttClient.on('disconnect',function () {
-        process.exit(1);
+        //(function () { globalCallback("Connection closed."); })();
+        // client.end();
     });
 }
 
-function LogUptime() {
-    var uptime = process.uptime();
-    var { join } = require('path');
-    if (global.Fca.Require.fs.existsSync(join(__dirname, '../CountTime.json'))) {
-        var Time1 = (Number(global.Fca.Require.fs.readFileSync(join(__dirname, '../CountTime.json'), 'utf8')) || 0);
-        global.Fca.Require.fs.writeFileSync(join(__dirname, '../CountTime.json'), String(Number(uptime) + Time1), 'utf8');
-    }
-    else {
-        var Time1 = 0;
-        global.Fca.Require.fs.writeFileSync(join(__dirname, '../CountTime.json'), String(Number(uptime) + Time1), 'utf8');
-    }
-}
 function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
     if (v.delta.class == "NewMessage") {
         //Not tested for pages
@@ -226,21 +210,12 @@ function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
                 try {
                     fmtMsg = utils.formatDeltaMessage(v);
                 } catch (err) {
-                    return log.error("Lỗi Nhẹ", err);
-                }
-                 global.Fca.Data.event = fmtMsg;
-                try {
-                    if (process.env.HalzionVersion == 1973) { 
-                        var { updateMessageCount,getData,hasData } = require('../Extra/ExtraGetThread');
-                        if (hasData(fmtMsg.threadID)) {
-                            var x = getData(fmtMsg.threadID);
-                            x.messageCount+=1;
-                            updateMessageCount(fmtMsg.threadID,x);
-                        }   
-                    }    
-                }
-                catch (e) {
-                    //temp
+                    return globalCallback({
+                        error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                        detail: err,
+                        res: v,
+                        type: "parse_error"
+                    });
                 }
                 if (fmtMsg)
                     if (ctx.globalOptions.autoMarkDelivery) markDelivery(ctx, api, fmtMsg.threadID, fmtMsg.messageID);
@@ -394,7 +369,6 @@ function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
                                 for (var n in fetchData.message.ranges) mobj[fetchData.message.ranges[n].entity.id] = (fetchData.message.text || "").substr(fetchData.message.ranges[n].offset, fetchData.message.ranges[n].length);
 
                                 callbackToReturn.messageReply = {
-                                    type: "Message",
                                     threadID: callbackToReturn.threadID,
                                     messageID: fetchData.message_id,
                                     senderID: fetchData.message_sender.id.toString(),
@@ -422,7 +396,7 @@ function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
                                 !ctx.globalOptions.selfListen && callbackToReturn.senderID === ctx.userID ? undefined : (function () { globalCallback(null, callbackToReturn); })();
                             });
                     } else callbackToReturn.delta = delta;
-            
+
                     if (ctx.globalOptions.autoMarkDelivery) markDelivery(ctx, api, callbackToReturn.threadID, callbackToReturn.messageID);
 
                     return !ctx.globalOptions.selfListen && callbackToReturn.senderID === ctx.userID ? undefined : (function () { globalCallback(null, callbackToReturn); })();
@@ -439,13 +413,16 @@ function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
             try {
                 fmtMsg = utils.formatDeltaReadReceipt(v.delta);
             } catch (err) {
-                return log.error("Lỗi Nhẹ", err);
+                return globalCallback({
+                    error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                    detail: err,
+                    res: v.delta,
+                    type: "parse_error"
+                });
             }
             return (function () { globalCallback(null, fmtMsg); })();
         case "AdminTextMessage":
             switch (v.delta.type) {
-                case "joinable_group_link_mode_change":
-                case "magic_words":
                 case "change_thread_theme":
                 case "change_thread_icon":
                 case "change_thread_nickname":
@@ -458,12 +435,18 @@ function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
                     try {
                         fmtMsg = utils.formatDeltaEvent(v.delta);
                     } catch (err) {
-                        return log.error("Lỗi Nhẹ", err);
+                        return globalCallback({
+                            error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                            detail: err,
+                            res: v.delta,
+                            type: "parse_error"
+                        });
                     }
                     return (function () { globalCallback(null, fmtMsg); })();
                 default:
                     return;
             }
+            break;
         //For group images
         case "ForcedFetch":
             if (!v.delta.threadKey) return;
@@ -590,12 +573,16 @@ function parseDelta(defaultFuncs, api, ctx, globalCallback, v) {
             try {
                 formattedEvent = utils.formatDeltaEvent(v.delta);
             } catch (err) {
-                return log.error("Lỗi Nhẹ", err);
+                return globalCallback({
+                    error: "Problem parsing message object. Please open an issue at https://github.com/Schmavery/facebook-chat-api/issues.",
+                    detail: err,
+                    res: v.delta,
+                    type: "parse_error"
+                });
             }
             return (!ctx.globalOptions.selfListen && formattedEvent.author.toString() === ctx.userID) || !ctx.loggedIn ? undefined : (function () { globalCallback(null, formattedEvent); })();
     }
 }
-
 
 function markDelivery(ctx, api, threadID, messageID) {
     if (threadID && messageID) {
@@ -620,20 +607,7 @@ module.exports = function (defaultFuncs, api, ctx) {
             .post("https://www.facebook.com/api/graphqlbatch/", ctx.jar, form)
             .then(utils.parseAndCheckLogin(ctx, defaultFuncs))
             .then((resData) => {
-                if (utils.getType(resData) != "Array") {
-                    switch (global.Fca.Require.FastConfig.AutoLogin) {
-                        case true: {
-                            global.Fca.Require.logger.Warning(global.Fca.Require.Language.Index.AutoLogin, function() {
-                                return global.Fca.AutoLogin();
-                            });
-                            break;
-                        }
-                        case false: {
-                            throw { error: global.Fca.Require.Language.Index.ErrAppState };
-                            
-                        }
-                    }
-                }
+                if (utils.getType(resData) != "Array") throw { error: "Not logged in", res: resData };
                 if (resData && resData[resData.length - 1].error_results > 0) throw resData[0].o0.errors;
                 if (resData[resData.length - 1].successful_results === 0) throw { error: "getSeqId: there was no successful_results", res: resData };
                 if (resData[0].o0.data.viewer.message_threads.sync_sequence_id) {
@@ -643,12 +617,12 @@ module.exports = function (defaultFuncs, api, ctx) {
             })
             .catch((err) => {
                 log.error("getSeqId", err);
-                if (utils.getType(err) == "Object" && err.error === global.Fca.Require.Language.Index.ErrAppState) ctx.loggedIn = false;
+                if (utils.getType(err) == "Object" && err.error === "Not logged in") ctx.loggedIn = false;
                 return globalCallback(err);
             });
     };
 
-    return function (callback) {
+    return async function (callback) {
         class MessageEmitter extends EventEmitter {
             stopListening(callback) {
                 callback = callback || (() => { });
