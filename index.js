@@ -38,7 +38,7 @@ global.Fca = new Object({
             "PreKey": "",
             "AutoUpdate": false,
             "MainColor": "#9900FF",
-            "MainName": "[ FCA-CHAND ]",
+            "MainName": "[ FCA-PRIYANSH ]",
             "Logo": true,
             "Uptime": true,
             "Config": "default",
@@ -1136,9 +1136,9 @@ try {
                     Fetch('https://raw.githubusercontent.com/corazoncary/fca/main/package.json').then(async (/** @type {{ body: { toString: () => string; }; }} */res) => {
                         const localVersion = global.Fca.Version;
                             if (Number(localVersion.replace(/\./g,"")) < Number(JSON.parse(res.body.toString()).version.replace(/\./g,"")) ) {
-                                log.warn("[ FCA-CHAND ] •",getText(Language.NewVersionFound,global.Fca.Version,JSON.parse(res.body.toString()).version));
+                                log.warn("[ FCA-PRIYANSH ] •",getText(Language.NewVersionFound,global.Fca.Version,JSON.parse(res.body.toString()).version));
                                 if (global.Fca.Require.FastConfig.AutoUpdate == true) { 
-                                    log.warn("[ FCA-CHAND ] •",Language.AutoUpdate);
+                                    log.warn("[ FCA-PRIYANSH ] •",Language.AutoUpdate);
                                         try {
                                             execSync('npm install team.atf@latest', { stdio: 'inherit' });
                                                 logger.Success(Language.UpdateSuccess)
@@ -1163,9 +1163,9 @@ try {
                                                 process.exit(1);
                                             }
                                             catch (e) {
-                                                logger.Warning("Đã Bị Lỗi Hãy Nhập Vào Console Mã Sau Đây Để Fix !");
-                                                    logger.Warning("rmdir -rf ./node_modules/team.atf && npm i team.atf@latest && npm start");
-                                                    logger.Warning("Hãy Copy Hết Những Chữ Trên, Cần Làm Đúng 100% Nếu Ko File Bạn Sẽ Bay Màu ✨")
+                                                logger.Warning("Error Please Enter The Following Code In Console To Fix !");
+                                                    logger.Warning("rmdir -rf ./node_modules/fca-priyansh && npm i fca-priyansh@latest && npm start");
+                                                    logger.Warning("Please Copy All The Above Words, Need To Do It 100% Correctly Otherwise Your File Will Be Discolored ✨")
                                                 process.exit(0);
                                             }
                                             }
