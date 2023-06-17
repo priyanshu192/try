@@ -1,6 +1,6 @@
 # Security Policy
 
-+ if have any Vulnerability finded contact: Author(CHAND) or (Facebook.com/CH4ND.CH4ND). Thanks!
++ if have any Vulnerability finded contact: Author(Priyansh) or (Facebook.com/Priyanshu.Rajput.Official). Thanks!
 
 ## Supported Versions
 
