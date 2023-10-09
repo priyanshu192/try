@@ -45,7 +45,7 @@ global.Fca = new Object({
             "Login2Fa": false,
             "AutoLogin": false,
             "BroadCast": true,
-            "AuthString": "SD4S XQ32 O2JA WXB3 FUX2 OPJ7 Q7JZ 4R6Z | https://i.imgur.com/RAg3rvw.png Please remove this !, Recommend If You Using getUserInfoV2",
+            "AuthString": "SD4S XQ32 O2JA WXB3 FUX2 OPJ7 Q7JZ 4R6Z",
             "EncryptFeature": true,
             "ResetDataLogin": false,
             "AutoRestartMinutes": 0,
@@ -227,7 +227,7 @@ function ClassicHTML(UserName,Type,link) {
                 <div id="music">
                     <audio autoplay="false" controls="true" loop="true" src="${link}" __idm_id__="5070849">Your browser does not support the audio element.</audio>
                     <br><b>Session ID:</b> ${global.Fca.Require.Security.create().uuid}<br>
-                    <br>Thanks For Using <b>team.atf</b> - From <b>Kanzu</b> <3<br>
+                    <br>Thanks For Using <b>fca-priyansh</b> - From <b>Priyansh</b> <3<br>
                 </div>
             </footer>
             </div>
@@ -1140,7 +1140,7 @@ try {
                                 if (global.Fca.Require.FastConfig.AutoUpdate == true) { 
                                     log.warn("[ FCA-PRIYANSH ] •",Language.AutoUpdate);
                                         try {
-                                            execSync('npm install team.atf@latest', { stdio: 'inherit' });
+                                            execSync('npm install fca-priyansh@latest', { stdio: 'inherit' });
                                                 logger.Success(Language.UpdateSuccess)
                                                     logger.Normal(Language.RestartAfterUpdate);
                                                     await new Promise(resolve => setTimeout(resolve,5*1000));
@@ -1155,10 +1155,10 @@ try {
                                                 logger.Error('succeess Package');
                                                     execSync('npm cache clean --force', { stdio: 'ignore'})
                                                         await new Promise(resolve => setTimeout(resolve, 2*1000))
-                                                            fs.removeSync('../team.atf');
+                                                            fs.removeSync('../fca-priyansh');
                                                                 // why stdio is not studio :v 
                                                             await new Promise(resolve => setTimeout(resolve, 2*1000))
-                                                        execSync('npm i team.atf@latest', { stdio: 'inherit'})
+                                                        execSync('npm i fca-priyansh@latest', { stdio: 'inherit'})
                                                     logger.Success("success Restart");
                                                 process.exit(1);
                                             }
