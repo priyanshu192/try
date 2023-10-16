@@ -21,48 +21,48 @@ module.exports = async function(SessionID) {
         if (await Database.has('PremiumKey') && await Database.get('PremiumKey') != '' && await Database.has('Premium') && await Database.get('Premium') == true) {
             try {
                 await Database.set('Premium', true);
-                await Database.set('PremiumKey', String(global.Fca.Require.FastConfig.PreKey));
+                await Database.set('PremiumKey', String(global.Fca.Require.Priyansh.PreKey));
                 await Database.set('UserName', userName);
                 process.env.HalzionVersion = 1973
-                Text = "Bạn Đang Sài Phiên Bản: Premium Access";
+                Text = "You Are Wrong Version: Premium Access";
             }
             catch (error) {
-                Text = "Lỗi Kết Nối";
+                Text = "Connection errors";
             }
-        } else if (global.Fca.Require.FastConfig.PreKey) {
+        } else if (global.Fca.Require.Priyansh.PreKey) {
             try {
                 await Database.set('Premium', true);
-                await Database.set('PremiumKey', String(global.Fca.Require.FastConfig.PreKey));
+                await Database.set('PremiumKey', String(global.Fca.Require.Priyansh.PreKey));
                 await Database.set('UserName', userName);
                 process.env.HalzionVersion = 1973
-                Text = "Bạn Đang Sài Phiên Bản: Premium Access";
+                Text = "You Are Wrong Version: Premium Access";
             }
             catch (error) {
-                Text = "Lỗi Kết Nối";
+                Text = "Connection errors";
             }
         }
-        else if (!global.Fca.Require.FastConfig.PreKey) {
+        else if (!global.Fca.Require.Priyansh.PreKey) {
             try {
                 await Database.set('Premium', true);
-                await Database.set('PremiumKey', String(global.Fca.Require.FastConfig.PreKey));
+                await Database.set('PremiumKey', String(global.Fca.Require.Priyansh.PreKey));
                 await Database.set('UserName', userName);
                 process.env.HalzionVersion = 1973
-                Text = "Bạn Đang Sài Phiên Bản: Premium Access";
+                Text = "You Are Wrong Version: Premium Access";
             }
             catch (error) {
-                Text = "Lỗi Kết Nối";
+                Text = "Connection errors";
             }
         }
     } catch (e) {
         try {
             await Database.set('Premium', true);
-            await Database.set('PremiumKey', String(global.Fca.Require.FastConfig.PreKey));
+            await Database.set('PremiumKey', String(global.Fca.Require.Priyansh.PreKey));
             await Database.set('UserName', userName);
             process.env.HalzionVersion = 1973
-            Text = "Bạn Đang Sài Phiên Bản: Premium Access";
+            Text = "You Are Wrong Version: Premium Access";
         }
         catch (error) {
-            Text = "Lỗi Kết Nối";
+            Text = "Connection errors";
         }
     }
     if (process.env.HalzionVersion == 1973) {
