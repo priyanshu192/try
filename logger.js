@@ -17,10 +17,10 @@ function getType(obj) {
 
 module.exports = {
 	Normal: function(/** @type {string} */ Str, /** @type {() => any} */ Data ,/** @type {() => void} */ Callback) {
-		if (isHexcolor(global.Fca.Require.FastConfig.MainColor) != true) {
-			this.Warning(getText(global.Fca.Require.Language.Index.InvaildMainColor,global.Fca.Require.FastConfig.MainColor),process.exit(0));
+		if (isHexcolor(global.Fca.Require.Priyansh.MainColor) != true) {
+			this.Warning(getText(global.Fca.Require.Language.Index.InvaildMainColor,global.Fca.Require.Priyansh.MainColor),process.exit(0));
 		}
-		else console.log(chalk.hex(global.Fca.Require.FastConfig.MainColor).bold(`${global.Fca.Require.FastConfig.MainName || '[ PRIYANSH ]'} > `) + Str);
+		else console.log(chalk.hex(global.Fca.Require.Priyansh.MainColor).bold(`${global.Fca.Require.Priyansh.MainName || '[ PRIYANSH ]'} > `) + Str);
 		if (getType(Data) == 'Function' || getType(Data) == 'AsyncFunction') {
 			return Data();
 		}
@@ -50,14 +50,14 @@ module.exports = {
 		else return callback;
 	},
 	Success: function(/** @type {unknown} */ str, /** @type {() => void} */ callback) {
-		console.log(chalk.hex('#9900FF').bold(`${global.Fca.Require.FastConfig.MainName || '[ PRIYANSH ]'} > `) + chalk.green(str));
+		console.log(chalk.hex('#9900FF').bold(`${global.Fca.Require.Priyansh.MainName || '[ PRIYANSH ]'} > `) + chalk.green(str));
 		if (getType(callback) == 'Function' || getType(callback) == 'AsyncFunction') {
 			callback();
 		}
 		else return callback;
 	},
 	Info: function(/** @type {unknown} */ str, /** @type {() => void} */ callback) {
-		console.log(chalk.hex('#9900FF').bold(`${global.Fca.Require.FastConfig.MainName || '[ PRIYANSH ]'} > `) + chalk.blue(str));
+		console.log(chalk.hex('#9900FF').bold(`${global.Fca.Require.Priyansh.MainName || '[ PRIYANSH ]'} > `) + chalk.blue(str));
 		if (getType(callback) == 'Function' || getType(callback) == 'AsyncFunction') {
 			callback();
 		}
