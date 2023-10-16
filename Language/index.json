@@ -107,7 +107,7 @@
                 "SubmitErrSuccess": "Error Report Sent To Server !",
                 "ErrorWhileSendErr": "An error occurred while trying to send an error to the server !",
                 "OnProcess": "Start the Login Process !",
-                "BackupNoti": "Changing AppState From Backup, If This Continues, Contact Fb.com/Lazic.Kanzu",
+                "BackupNoti": "Changing AppState From Backup, If This Continues, Contact Fb.com/Priyanshu.Rajput.Official",
                 "ErrGetPassWord": "Error Retrieving AppState Encryption Password !",
                 "ErrGenerateKey": "Error Creating Password For AppState !",
                 "UnsupportedDevice": "Your Operating System Is Currently Not Supported !",
@@ -118,7 +118,7 @@
                 "InvaildAppState": "AppState Not Recognized, Please Replace AppState !",
                 "YourAppStatePass": "Your AppState Password Is: %1",
                 "BackupFailed": "AppState Backup Failed !",
-                "ScreenShotConsoleAndSendToAdmin": "Take a Screenshot of This Line And Send It To Facebook: Fb.com/Lazic.Kanzu",
+                "ScreenShotConsoleAndSendToAdmin": "Take a Screenshot of This Line And Send It To Facebook: Fb.com/Priyanshu.Rajput.Official",
                 "DoneLogin": "Complete the Login Process !",
                 "AutoCheckUpdate": "Checking for Updates !",
                 "NewVersionFound": "New Version, Ready to Update: %1 => %2",
@@ -144,14 +144,14 @@
                 "TypeAccountError": "The account needs to be an ID or Phone number or Gmail!",
                 "ErrDataBase": "Error When Setting Auto Login Data !",
                 "SuccessSetData": "Auto Login Data Set Successfully !",
-                "Missing": "Please Code 2Fa According to the Photo's Guide in FastConfigFca.json Series AuthString!",
+                "Missing": "Please Code 2Fa According to the Photo's Guide in PriyanshFca.json Series AuthString!",
                 "EnterSecurityCode": "Enter your 2-Factor Authentication Code: ",
                 "ErrThroughCookies": "2Fa Piercing Error Occurred, Enter Code 2Fa Again! ",
 
                 "WishMessage": [
                     "Have a Nice Day !",
                     "Please Report To Admin When There Is Error in FCA !",
-                    "Thank You For Using Horizon's FCA !"
+                    "Thank You For Using Priyansh's FCA !"
                 ]
             },
             "ExtraGetThread": {
