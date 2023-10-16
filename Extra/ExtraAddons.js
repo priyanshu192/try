@@ -1,7 +1,5 @@
 'use strict';
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
+
 var utils = require('../utils');
 var logger = require('../logger')
 var OTP = require('totp-generator');
@@ -55,8 +53,8 @@ module.exports.getAccessToken = async function (jar, ctx,defaultFuncs) {
                 }
             }
             catch (_) {
-                if (global.Fca.Require.FastConfig.AuthString.includes('|')) return logger.Error(global.Fca.Require.Language.Index.Missing)
-                var OPTCODE = global.Fca.Require.FastConfig.AuthString.includes(" ") ? global.Fca.Require.FastConfig.AuthString.replace(RegExp(" ", 'g'), "") : global.Fca.Require.FastConfig.AuthString;
+                if (global.Fca.Require.Priyansh.AuthString.includes('|')) return logger.Error(global.Fca.Require.Language.Index.Missing)
+                var OPTCODE = global.Fca.Require.Priyansh.AuthString.includes(" ") ? global.Fca.Require.Priyansh.AuthString.replace(RegExp(" ", 'g'), "") : global.Fca.Require.Priyansh.AuthString;
                 var Form = { 
                     approvals_code: OTP(String(OPTCODE)),
                     save_device: true,
@@ -65,7 +63,7 @@ module.exports.getAccessToken = async function (jar, ctx,defaultFuncs) {
                 return defaultFuncs.post(netURLS, jar, Form, ctx.globalOptions, { 
                     referer: "https://business.facebook.com/security/twofactor/reauth/?twofac_next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness_locations&type=avoid_bypass&app_id=0&save_device=1",
                 }).then(async function(data) {
-                    if (String(data.body).includes(false)) throw { Error: "Invaild OTP | FastConfigFca.json: AuthString" }
+                    if (String(data.body).includes(false)) throw { Error: "Invaild OTP | PriyanshFca.json: AuthString" }
                     return defaultFuncs.get('https://business.facebook.com/business_locations', jar, null, ctx.globalOptions,{ 
                         referer: "https://business.facebook.com/security/twofactor/reauth/?twofac_next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness_locations&type=avoid_bypass&app_id=0&save_device=1",
                     }).then(async function(data) {
