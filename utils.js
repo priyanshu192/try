@@ -2,9 +2,7 @@
 /* eslint-disable no-undef */
 
 /* eslint-disable no-prototype-builtins */
-Fast Config
-FastConfig Fca
-ObjFastConfig
+
 "use strict";
 var url = require("url");
 var log = require("npmlog");
