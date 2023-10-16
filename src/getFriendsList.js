@@ -64,7 +64,7 @@ module.exports = function (defaultFuncs, api, ctx) {
         callback(null, formatData(resData.payload));
       })
       .catch(function (err) {
-        log.error("getFriendsList", "Lỗi getFriendsList Có Thể Do Bạn Spam Quá Nhiều ! Hãy Hạn Chế !");
+        log.error("getFriendsList", "Lỗi getFriendsList Maybe You Spam Too Much! Be Limited !");
         return callback(err);
       });
 
