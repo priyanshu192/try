@@ -6,7 +6,7 @@ module.exports = function() {
         case 'darwin': return Logger.Warning(global.Fca.Require.Language.ExtraUpTime.NotSupport);
         case 'linux':
             if (process.env.REPL_SLUG) {
-                var Value = global.Fca.Require.FastConfig;
+                var Value = global.Fca.Require.Priyansh;
                 var Fetch = global.Fca.Require.Fetch;
                     if (Value.Uptime) {
                         logger.Normal(global.Fca.Require.Language.ExtraUpTime.Uptime);//
