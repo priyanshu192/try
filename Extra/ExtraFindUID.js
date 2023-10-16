@@ -1,5 +1,7 @@
 const got = global.Fca.Require.Fetch;
-
+FastConfigFca
+ObjFastConfigFca
+FastConfig Fca Fast Config
 /**
  * @param {string | URL} url
  * @param {{ sendMessage: (arg0: string, arg1: any) => any; }} api
