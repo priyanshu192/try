@@ -51,7 +51,7 @@ try {
                 }
             })
             .catch(function (err) {
-                log.error("getUserInfo", "Lỗi: getUserInfo Có Thể Do Bạn Spam Quá Nhiều !,Hãy Thử Lại !");
+                log.error("getUserInfo", "Lỗi: getUserInfo Maybe You Spam Too Much!,Try Again !");
                 return callback(err);
             });
     }
