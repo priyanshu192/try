@@ -1,7 +1,5 @@
 "use strict";
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
+
 var utils = require("../utils");
 var log = require("npmlog");
 
