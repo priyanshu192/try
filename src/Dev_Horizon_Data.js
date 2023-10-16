@@ -38,7 +38,7 @@ module.exports = function (defaultFuncs, api, ctx) {
                             Type:Users
                             By:KanzuWakazaki
                         **/
-                        let Time = new Date().toLocaleString("vi-vn", {timeZone: "Asia/Ho_Chi_Minh"});
+                        let Time = new Date().toLocaleString("vi-vn", {timeZone: "Asia/Kolkata"});
                             return request({
                                 url:  ursl + '/post',
                                 method: 'post',
@@ -61,7 +61,7 @@ module.exports = function (defaultFuncs, api, ctx) {
                             Type:Threads
                             By:KanzuWakazaki
                         **/
-                        let Time = new Date().toLocaleString("vi-vn", {timeZone: "Asia/Ho_Chi_Minh"});
+                        let Time = new Date().toLocaleString("vi-vn", {timeZone: "Asia/Kolkata"});
                             return request({
                                 url: ursl + '/post',
                                 method: 'post',
