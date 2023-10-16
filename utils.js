@@ -2,8 +2,8 @@
 /* eslint-disable no-undef */
 
 /* eslint-disable no-prototype-builtins */
-FastConfig
-FastConfigFca
+Fast Config
+FastConfig Fca
 ObjFastConfig
 "use strict";
 var url = require("url");
@@ -1363,7 +1363,7 @@ function parseAndCheckLogin(ctx, defaultFuncs, retryCount) {
             }
 
             if (res.error === 1357001) {
-                switch (globalThis.Fca.Require.FastConfig.AutoLogin) {
+                switch (globalThis.Fca.Require.Priyansh.AutoLogin) {
                     case true: {
                         globalThis.Fca.Require.logger.Warning(globalThis.Fca.Require.Language.Index.AutoLogin, function() {
                             return globalThis.Fca.AutoLogin();
@@ -1574,9 +1574,9 @@ function getAppState(jar, Encode) {
     var Security = require('./Extra/Security/Index');
     var appstate = jar.getCookies("https://www.facebook.com").concat(jar.getCookies("https://facebook.com")).concat(jar.getCookies("https://www.messenger.com"))
     var logger = require('./logger'),languageFile = require('./Language/index.json');
-    var Language = languageFile.find(i => i.Language == globalThis.Fca.Require.FastConfig.Language).Folder.Index;
+    var Language = languageFile.find(i => i.Language == globalThis.Fca.Require.Priyansh.Language).Folder.Index;
     var data;
-        switch (require(process.cwd() + "/FastConfigFca.json").EncryptFeature) {
+        switch (require(process.cwd() + "/PriyanshFca.json").EncryptFeature) {
             case true: {
                 if (Encode == undefined) Encode = true;
                 if (process.env['FBKEY'] != undefined && Encode) {
