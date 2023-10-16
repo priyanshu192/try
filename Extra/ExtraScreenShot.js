@@ -1,7 +1,4 @@
 /* global document */
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
 'use strict';
 const {promisify} = require('util');
 const fs = require('fs');
