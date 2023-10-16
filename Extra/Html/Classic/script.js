@@ -1,9 +1,7 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 var mask;
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
+
 var pointCount = 500;
 var str = "Horizon";
 var fontStr = "bold 100pt Helvetica Neue, Helvetica, Arial, sans-serif";
