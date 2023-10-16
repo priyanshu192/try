@@ -33,7 +33,7 @@ global.Fca = new Object({
         return Main;
     },
     Data: new Object({
-        ObjFastConfig: {
+        Obj FastConfigFca: {
             "Language": "en",
             "PreKey": "",
             "AutoUpdate": false,
@@ -104,7 +104,7 @@ let All_Variable = Boolean_Fca.concat(String_Fca,Number_Fca);
 
 try {
     if (!global.Fca.Require.fs.existsSync(process.cwd() + '/FastConfigFca.json')) {
-        global.Fca.Require.fs.writeFileSync(process.cwd() + "/FastConfigFca.json", JSON.stringify(global.Fca.Data.ObjFastConfig, null, "\t"));
+        global.Fca.Require.fs.writeFileSync(process.cwd() + "/FastConfigFca.json", JSON.stringify(global.Fca.Data.ObjPriyansh, null, "\t"));
         process.exit(1);
     }
 
@@ -113,7 +113,7 @@ try {
 }
 catch (e) {
     global.Fca.Require.logger.Error('Detect Your FastConfigFca Settings Invalid!, Carry out default restoration');
-    global.Fca.Require.fs.writeFileSync(process.cwd() + "/FastConfigFca.json", JSON.stringify(global.Fca.Data.ObjFastConfig, null, "\t"));     
+    global.Fca.Require.fs.writeFileSync(process.cwd() + "/FastConfigFca.json", JSON.stringify(global.Fca.Data.ObjPriyansh, null, "\t"));     
     process.exit(1)
 }
     if (global.Fca.Require.fs.existsSync(process.cwd() + '/FastConfigFca.json')) {
@@ -149,7 +149,7 @@ catch (e) {
         }
         for (let i of All_Variable) {
             if (!DataLanguageSetting[All_Variable[i]] == undefined) {
-                DataLanguageSetting[All_Variable[i]] = global.Fca.Data.ObjFastConfig[All_Variable[i]];
+                DataLanguageSetting[All_Variable[i]] = global.Fca.Data.ObjPriyansh[All_Variable[i]];
                 global.Fca.Require.fs.writeFileSync(process.cwd() + "/FastConfigFca.json", JSON.stringify(DataLanguageSetting, null, "\t"));
             }
             else continue; 
