@@ -1,6 +1,3 @@
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
 var get = require('lodash/get'),
     set = require('lodash/set'),
     got = require("got"),
