@@ -43,7 +43,7 @@ try {
             })
             .catch(function (err) {
                 console.log(err)
-                log.error("getUserInfo", "Lỗi: getUserInfo Có Thể Do Bạn Spam Quá Nhiều !,Hãy Thử Lại !");
+                log.error("getUserInfo", "Error: getUserInfo Maybe You Spam Too Much!,Try Again !");
                 return callback(err);
             });
     }
