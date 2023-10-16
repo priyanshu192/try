@@ -1,6 +1,6 @@
 {
   "name": "fca-priyansh",
-  "version": "10.0.0",
+  "version": "10.1.0",
   "description": "Facebook-chat-api made by Priyansh rajput",
   "main": "index.js",
   "scripts": {
@@ -83,9 +83,9 @@
     }
   },
   "keywords": [
-    "Fca Priyansh",
-    "Fca-Priyansh",
-    "Atf fca",
-    "Team-atf"
+   "Fca Priyansh",
+    "fca-priyansh",
+    "Priyansh fca",
+    "Priyansh Rajput"
   ]
 }
