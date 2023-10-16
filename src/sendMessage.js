@@ -1,5 +1,7 @@
 "use strict";
-
+FastConfigFca
+ObjFastConfigFca
+FastConfig Fca Fast Config
 /**
  * Được Fix Hay Làm Màu Bởi: @HarryWakazaki
  * 21/4/2022
