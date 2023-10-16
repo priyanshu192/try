@@ -1,6 +1,3 @@
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
 /* eslint-disable no-redeclare */
 "use strict";
 var utils = require("../utils");
