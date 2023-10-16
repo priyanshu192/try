@@ -51,8 +51,7 @@ global.Fca = new Object({
             "AutoRestartMinutes": 0,
             "HTML": {   
                 "HTML": true,
-                "UserName": "Guest",
-                "MusicLink": "https://drive.google.com/uc?id=1zlAALlxk1TnO7jXtEP_O6yvemtzA2ukA&export=download"
+                "UserName": "Guest"
             }   
         },
         CountTime: function() {
