@@ -1,6 +1,8 @@
 /* eslint-disable linebreak-style */
 "use strict";
-
+FastConfigFca
+ObjFastConfigFca
+FastConfig Fca Fast Config
 module.exports = function (_defaultFuncs, api, _ctx) {
     return function getUID(link, callback) {
       var resolveFunc = function () { };
@@ -24,7 +26,7 @@ module.exports = function (_defaultFuncs, api, _ctx) {
             var LinkSplit = Link.split('/');
             if (LinkSplit.indexOf("https:") == 0) {
               if (!isNaN(LinkSplit[3]) && !Link.split('=')[1]  && !isNaN(Link.split('=')[1])) {
-                api.sendMessage('Sai Link, Link Cần Có Định Dạng Như Sau: facebook.com/Lazic.Kanzu',global.Fca.Data.event.threadID,global.Fca.Data.event.messageID);
+                api.sendMessage('Wrong Link, Link Should Have The Following Format: facebook.com/Priyanshu.Official.Rajput',global.Fca.Data.event.threadID,global.Fca.Data.event.messageID);
                 callback(null, String(4));
               }
               else if (!isNaN(Link.split('=')[1]) && Link.split('=')[1]) {
