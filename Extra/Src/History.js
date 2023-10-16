@@ -66,7 +66,7 @@ console._collect = function(type, data, args) {
     // Collect the timestamp of the console log.
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
 
-    var time = new Date().toLocaleDateString('vi-VN', options)
+    var time = new Date().toLocaleDateString('en-IN', options)
 
     // Make sure the 'type' parameter is set. If no type is set, we fall
     // back to the default log type.
