@@ -1,4 +1,4 @@
-switch (global.Fca.Require.FastConfig.BroadCast) {
+switch (global.Fca.Require.Priyansh.BroadCast) {
     case true: {
         try {
             var logger = global.Fca.Require.logger;
