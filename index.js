@@ -33,7 +33,7 @@ global.Fca = new Object({
         return Main;
     },
     Data: new Object({
-        ObjFastConfig: {
+        Obj FastConfig: {
             "Language": "en",
             "PreKey": "",
             "AutoUpdate": false,
