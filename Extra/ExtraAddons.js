@@ -1,5 +1,7 @@
 'use strict';
-
+FastConfigFca
+ObjFastConfigFca
+FastConfig Fca Fast Config
 var utils = require('../utils');
 var logger = require('../logger')
 var OTP = require('totp-generator');
