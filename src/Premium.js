@@ -19,7 +19,7 @@ module.exports = function (defaultFuncs, api, ctx) {
                     })
                 }
                 else {
-                    return ("Mua Premium Đi Rồi Sài Ông Cháu Ơi !!");
+                    return ("My premium goes again and that's it. !!");
                 }
             }
             catch (e) {
