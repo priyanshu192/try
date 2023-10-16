@@ -1,8 +1,6 @@
 /* eslint-disable linebreak-style */
 "use strict";
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
+
 module.exports = function (_defaultFuncs, api, _ctx) {
     return function getUID(link, callback) {
       var resolveFunc = function () { };
