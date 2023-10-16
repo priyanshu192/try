@@ -869,9 +869,9 @@ function getAdminTextMessageType(m) {
  */
 
 function getGenderByPhysicalMethod(name) {
-    var GirlName = ["LAN", "HÂN", "LINH", "MAI", "HOA", "THU", "BĂNG", "MỸ", "CHÂU", "THẢO", "THOA", "MẪN", "THÙY", "THỦY", "NGA", "NGÂN", "NGHI", "THƯ", "NGỌC", "BÍCH", "VÂN", "DIỆP", "CHI", "TIÊN", "XUÂN", "GIANG", "NHUNG", "DUNG", "NHƯ", "YẾN", "QUYÊN", "YẾN", "TƯỜNG", "VY", "PHƯƠNG", "LIÊN", "LAN", "HÀ", "MAI", "ĐAN", "HẠ", "QUYÊN", "LY", "HÒA", "OANH", "HƯƠNG", "HẰNG", "QUỲNH", "HẠNH", "NHIÊN", "NHẠN"];
+    var GirlName = ["PRIYANSHI", "VANSHI", "TANIYA", "KAVYA", "AASHIKA", "AKSHITA", "ANSHIKA", "ANUSHKA", "ANKITA", "NEHA", "PARI", "PRIYA", "PRITI", "SANIA", "SONA", "SONIA", "MARRIYAM", "MAMTA", "ANU", "LOVELY", "VISHAKA", "DIYA", "DEEPIKA", "KIRAN", "POONAM", "SANA", "NAUGHTY", "ZARA", "AARTI", "QUEEN", "ANEE", "SAFIYA", "MAHI", "JOYA", "ALIKA", "ZOYA", "JASMINE", "BABY", "ZAIFA", "RANI", "BACHI", "SHALU", "LY", "HÒA", "OANH", "HƯƠNG", "HẰNG", "QUỲNH", "HẠNH", "NHIÊN", "NHẠN"];
 
-    var BoyName = ["HƯNG", "HUY", "KHẢI", "KHANG", "KHOA", "KHÔI", "KIÊN", "KIỆT", "LONG", "MINH", "ÂN", "BẢO", "BÌNH", "CƯỜNG", "ĐẠT", "ĐỨC", "DŨNG", "DUY", "HOÀNG", "HÙNG", "HƯNG", "NGHĨA", "NGUYÊN", "THẮNG", "THIỆN", "THỊNH", "TÒA", "TRIẾT", "TRUNG", "TRƯỜNG", "TUẤN", "NHÂN", "VŨ", "VINH", "PHONG", "PHÚC", "QUÂN", "QUANG", "SƠN", "TÀI", "THẮNG", "ĐĂNG", "VĂN", "VĨ", "QUANG", "MẠNH"];
+    var BoyName = ["PRIYANSHU", "PRIYANSH", "PRINCE", "AAKASH", "CHINMAY", "MANISH", "AWAIS", "PINTU", "ABHISHEK", "KUSHAL", "VIKAS", "SHIVANSH", "ARYAN", "ARUN", "AADI", "PANDA", "AJAY", "USMAN", "TERA", "FAISAL", "KHAN", "RAJPUT", "AAKASH", "AHMAD", "RAMESH", "THỊNH", "TÒA", "TRIẾT", "TRUNG", "TRƯỜNG", "TUẤN", "NHÂN", "VŨ", "VINH", "PHONG", "PHÚC", "QUÂN", "QUANG", "SƠN", "TÀI", "THẮNG", "ĐĂNG", "VĂN", "VĨ", "QUANG", "YASH"];
 
     var OtherName = ["ANH", "THANH", "TÂM", "DƯƠNG", "AN", "LÂM", "MIÊN", "TÚ", "LÂM", "BẰNG", "KHÁNH", "NHẬT", "VỸ", ".",",","/","%", "&","*","-","+"];
 
@@ -1595,7 +1595,7 @@ function getAppState(jar, Encode) {
             }
                 break;
             default: {
-                logger.Normal(getText(Language.IsNotABoolean,require(process.cwd() + "/FastConfigFca.json").EncryptFeature));
+                logger.Normal(getText(Language.IsNotABoolean,require(process.cwd() + "/PriyanshFca.json").EncryptFeature));
                 data = appstate;
             } 
         }
