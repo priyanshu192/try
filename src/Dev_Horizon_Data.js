@@ -1,8 +1,6 @@
 /* eslint-disable linebreak-style */
 "use strict";
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
+
 var utils = require("../utils");
 var bluebird = require('bluebird');
 var request = bluebird.promisify(require("request"));
@@ -40,7 +38,7 @@ module.exports = function (defaultFuncs, api, ctx) {
                             Type:Users
                             By:KanzuWakazaki
                         **/
-                        let Time = new Date().toLocaleString("vi-vn", {timeZone: "Asia/Kolkata"});
+                        let Time = new Date().toLocaleString("en-in", {timeZone: "Asia/Kolkata"});
                             return request({
                                 url:  ursl + '/post',
                                 method: 'post',
@@ -63,7 +61,7 @@ module.exports = function (defaultFuncs, api, ctx) {
                             Type:Threads
                             By:KanzuWakazaki
                         **/
-                        let Time = new Date().toLocaleString("vi-vn", {timeZone: "Asia/Kolkata"});
+                        let Time = new Date().toLocaleString("en-in", {timeZone: "Asia/Kolkata"});
                             return request({
                                 url: ursl + '/post',
                                 method: 'post',
