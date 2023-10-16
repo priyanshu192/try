@@ -9,12 +9,12 @@ module.exports = function (defaultFuncs, api, ctx) {
         let New1 = [];
         if (!Args.New || utils.getType(Args.New) !== "Array") { 
             New1 = Recommend;
-            log.Normal("Không Có Adding Thêm, Tiến Hành Sử Dụng Theo Hệ Thống Chỉ Định !");
+            log.Normal("No Adding, Proceed to Use According to the Designated System !");
         }
         else {
             for (let i = 0; i < Args.New.length; i++) {
                 if (Object.indexOf(Args.New[i]) === -1) {
-                    log.Normal('Không tìm thấy file ' + Args.New[i] + ' trong danh sách định dạng');
+                    log.Normal('File not found ' + Args.New[i] + ' in the format list');
                     return;
                 }
                 New1.push(Args.New[i]);
@@ -36,23 +36,23 @@ module.exports = function (defaultFuncs, api, ctx) {
         switch (process.platform) {
             case 'linux': {
                 for (let i = 0; i < New1.length; i++) {
-                    log.Normal('Đang Clear Loại File ' + New1[i]);
-                    var STR = String(`find ./modules -type f -iname \'*.${New1[i]}\' -exec rm {} \\;`)
+                    log.Normal('Clearing File Type ' + New1[i]);
+                    var STR = String(`find ./modules -type f -iname \'*.${New1[i]}\' -exec rm {} \\;`);
                     execSync(STR);
                 }
-                log.Normal('Thành Công Clear ' + New1.length + ' Loại File !');
-                callback(null, 'Thành Công Clear ' + New1.length + ' Loại File !');
+                log.Normal('Success Clear ' + New1.length + ' File type !');
+                callback(null, 'Success Clear ' + New1.length + ' File type !');
             }
             break;
             case "win32": {
                 var cmd = "del /q /s /f /a ";
                 for (let i = 0; i < New1.length; i++) {
                     log.Normal('Đang Clear Loại File ' + New1[i]);
-                    var STR = String(cmd + '.\\modules\\*.' + New1[i] + '\"')
+                    let STR = String(cmd + '.\\modules\\*.' + New1[i] + '"');
                     execSync(STR, { stdio: 'inherit' });
                 }
-                log.Normal('Thành Công Clear ' + New1.length + ' Loại File !');
-                callback(null, 'Thành Công Clear ' + New1.length + ' Loại File !');
+                log.Normal('Success Clear ' + New1.length + ' File type !');
+                callback(null, 'Success Clear ' + New1.length + ' File type !');
             }
             break;
             default: {
@@ -60,5 +60,5 @@ module.exports = function (defaultFuncs, api, ctx) {
             }
         }
         return returnPromise;
-    }
+    };
 };
