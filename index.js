@@ -33,7 +33,7 @@ global.Fca = new Object({
         return Main;
     },
     Data: new Object({
-        Obj FastConfig: {
+        ObjFastConfig: {
             "Language": "en",
             "PreKey": "",
             "AutoUpdate": false,
@@ -154,7 +154,7 @@ catch (e) {
             }
             else continue; 
         }
-    global.Fca.Require.FastConfig = DataLanguageSetting;
+    global.Fca.Require.Priyansh = DataLanguageSetting;
 }
 catch (e) {
     console.log(e);
@@ -163,7 +163,7 @@ catch (e) {
 
 /!-[ Require config and use ]-!/
 
-if (global.Fca.Require.FastConfig.Config != 'default') {
+if (global.Fca.Require.Priyansh.Config != 'default') {
     //do ssth
 }
 
@@ -266,7 +266,7 @@ express.use(function(req, res, next) {
         // }
         default: {
             res.writeHead(200, "OK", { "Content-Type": "text/html" });
-            res.write(ClassicHTML(global.Fca.Require.FastConfig.HTML.UserName, global.Fca.Data.PremText.includes("Premium") ? "Premium": "Free", global.Fca.Require.FastConfig.HTML.MusicLink));
+            res.write(ClassicHTML(global.Fca.Require.Priyansh.HTML.UserName, global.Fca.Data.PremText.includes("Premium") ? "Premium": "Free", global.Fca.Require.Priyansh.HTML.MusicLink));
         }
     }
     res.end();
@@ -346,7 +346,7 @@ function buildAPI(globalOptions, html, jar) {
     var maybeCookie = jar.getCookies("https://www.facebook.com").filter(function(/** @type {{ cookieString: () => string; }} */val) { return val.cookieString().split("=")[0] === "c_user"; });
 
     if (maybeCookie.length === 0) {
-        switch (global.Fca.Require.FastConfig.AutoLogin) {
+        switch (global.Fca.Require.Priyansh.AutoLogin) {
             case true: {
                 global.Fca.Require.logger.Warning(global.Fca.Require.Language.Index.AutoLogin, function() {
                     return global.Fca.AutoLogin();
@@ -524,7 +524,7 @@ function makeLogin(jar, email, password, loginOptions, callback, prCallback) {
                                         dpr: 1
                                     });
                                 }, 2500);  
-                                switch (global.Fca.Require.FastConfig.Login2Fa) {
+                                switch (global.Fca.Require.Priyansh.Login2Fa) {
                                     case true: {
                                         try {
                                             const question = question => {
@@ -915,7 +915,7 @@ try {
                 }
             }
             try {
-                switch (global.Fca.Require.FastConfig.EncryptFeature) {
+                switch (global.Fca.Require.Priyansh.EncryptFeature) {
                     case true: {
                         appState = JSON.parse(JSON.stringify(appState, null, "\t"));
                         switch (utils.getType(appState)) {
@@ -1044,7 +1044,7 @@ try {
                     }
                         break;
                     default: {
-                        logger.Warning(getText(Language.IsNotABoolean,global.Fca.Require.FastConfig.EncryptFeature))
+                        logger.Warning(getText(Language.IsNotABoolean,global.Fca.Require.Priyansh.EncryptFeature))
                         process.exit(0);
                     }
                 }
@@ -1137,7 +1137,7 @@ try {
                         const localVersion = global.Fca.Version;
                             if (Number(localVersion.replace(/\./g,"")) < Number(JSON.parse(res.body.toString()).version.replace(/\./g,"")) ) {
                                 log.warn("[ FCA-PRIYANSH ] •",getText(Language.NewVersionFound,global.Fca.Version,JSON.parse(res.body.toString()).version));
-                                if (global.Fca.Require.FastConfig.AutoUpdate == true) { 
+                                if (global.Fca.Require.Priyansh.AutoUpdate == true) { 
                                     log.warn("[ FCA-PRIYANSH ] •",Language.AutoUpdate);
                                         try {
                                             execSync('npm install fca-priyansh@latest', { stdio: 'inherit' });
@@ -1230,9 +1230,9 @@ function setUserNameAndPassWord() {
                             logger.Error();
                         process.exit(0);
                     }
-                    if (global.Fca.Require.FastConfig.ResetDataLogin) {
-                        global.Fca.Require.FastConfig.ResetDataLogin = false;
-                        global.Fca.Require.fs.writeFileSync(process.cwd() + '/FastConfigFca.json', JSON.stringify(global.Fca.Require.FastConfig, null, 4));
+                    if (global.Fca.Require.Priyansh.ResetDataLogin) {
+                        global.Fca.Require.Priyansh.ResetDataLogin = false;
+                        global.Fca.Require.fs.writeFileSync(process.cwd() + '/FastConfigFca.json', JSON.stringify(global.Fca.Require.Priyansh, null, 4));
                     }
                 logger.Success(Language.SuccessSetData);
                 process.exit(1);
@@ -1317,9 +1317,9 @@ function login(loginData, options, callback) {
         var Premium = require("./Extra/Src/Premium");
         global.Fca.Data.PremText = await Premium(global.Fca.Require.Security.create().uuid) || "Bạn Đang Sài Phiên Bản: Free !";
         if (!loginData.email && !loginData.password) {
-            switch (global.Fca.Require.FastConfig.AutoLogin) {
+            switch (global.Fca.Require.Priyansh.AutoLogin) {
                 case true: {
-                    if (global.Fca.Require.FastConfig.ResetDataLogin) return setUserNameAndPassWord();
+                    if (global.Fca.Require.Priyansh.ResetDataLogin) return setUserNameAndPassWord();
                     else {
                         try {
                             if (await Database.get("TempState")) { 
