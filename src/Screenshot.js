@@ -1,8 +1,6 @@
 /* eslint-disable linebreak-style */
 "use strict";
-FastConfigFca
-ObjFastConfigFca
-FastConfig Fca Fast Config
+
 var { join } = require('path');
 var fs = require('fs');
 var utils = require("../utils");
@@ -48,7 +46,7 @@ module.exports = function (defaultFuncs, api, ctx) {
                         });
                     }
                     else if (!isNaN(LinkSplit[3]) && !Link.split('=')[1]  && !isNaN(Link.split('=')[1])) {
-                        api.sendMessage('Invaild link, format link: facebook.com/Lazic.Kanzu',global.Fca.Data.event.threadID,global.Fca.Data.event.messageID);
+                        api.sendMessage('Invaild link, format link: facebook.com/Priyanshu.Official.Rajput',global.Fca.Data.event.threadID,global.Fca.Data.event.messageID);
                         callback('Error Link', null);
                     }
                     else if (!isNaN(Link.split('=')[1]) && Link.split('=')[1]) {
