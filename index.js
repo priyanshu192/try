@@ -192,7 +192,7 @@ log.maxRecordSize = 100;
 var checkVerified = null;
 var Boolean_Option = ['online','selfListen','listenEvents','updatePresence','forceLogin','autoMarkDelivery','autoMarkRead','listenTyping','autoReconnect','emitReady'];
 
-/!-[ Set And Check Template HTML ]-!/
+// /!-[ Set And Check Template HTML ]-!/
 
 // var css = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'style.css'));
 // var js = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'script.js'));
@@ -251,18 +251,18 @@ var Boolean_Option = ['online','selfListen','listenEvents','updatePresence','for
 //                 res.write(css);
 //             break;
 //         }
-        // case '/History': {
-        //     if (req.query.PassWord == process.env.REPL_OWNER) {
-        //         res.writeHead(200, { 'Content-Type': 'application/json charset=utf-8' });
-        //         res.write(JSON.stringify(console.history,null,2),'utf8');
-        //         res.end();
-        //     }
-        //     else res.json({
-        //         Status: false,
-        //         Error: "Thiếu Params ?PassWord=PassWordCuaBan =))"
-        //     });
-        //     break;
-        // }
+//         // case '/History': {
+//         //     if (req.query.PassWord == process.env.REPL_OWNER) {
+//         //         res.writeHead(200, { 'Content-Type': 'application/json charset=utf-8' });
+//         //         res.write(JSON.stringify(console.history,null,2),'utf8');
+//         //         res.end();
+//         //     }
+//         //     else res.json({
+//         //         Status: false,
+//         //         Error: "Thiếu Params ?PassWord=PassWordCuaBan =))"
+//         //     });
+//         //     break;
+//         // }
 //         default: {
 //             res.writeHead(200, "OK", { "Content-Type": "text/html" });
 //             res.write(ClassicHTML(global.Fca.Require.Priyansh.HTML.UserName, global.Fca.Data.PremText.includes("Premium") ? "Premium": "Free", global.Fca.Require.Priyansh.HTML.MusicLink));
@@ -354,7 +354,7 @@ function buildAPI(globalOptions, html, jar) {
             }
             case false: {
                 throw { error: global.Fca.Require.Language.Index.ErrAppState };
-                
+
             }
         }
     }
@@ -379,7 +379,7 @@ function buildAPI(globalOptions, html, jar) {
     }
 
     let Slot = Object.keys(CHECK_MQTT);
-    
+
     var mqttEndpoint,region,irisSeqID;
     Object.keys(CHECK_MQTT).map(function(MQTT) {
         if (CHECK_MQTT[MQTT] && !region) {
@@ -575,7 +575,7 @@ function makeLogin(jar, email, password, loginOptions, callback, prCallback) {
                                                                         $("form input").map((i, v) => arr.push({ val: $(v).val(), name: $(v).attr("name") }));
                                                                         arr = arr.filter(v => { return v.val && v.val.length });
                                                                         var from2 = utils.arrToForm(arr);
-                                                                        
+
                                                                         if (html.indexOf("checkpoint/?next") > -1) {
                                                                             setTimeout(() => {
                                                                                 checkVerified = setInterval((_form) => {}, 5000, {
@@ -1179,9 +1179,9 @@ try {
                     else {
                         logger.Normal(getText(Language.LocalVersion,localVersion));
                             logger.Normal(getText(Language.CountTime,global.Fca.Data.CountTime()))   
-                                logger.Normal(Language.WishMessage[Math.floor(Math.random()*Language.WishMessage.length)]);
+                                // logger.Normal(Language.WishMessage[Math.floor(Math.random()*Language.WishMessage.length)]);
                                 require('./Extra/ExtraUptimeRobot')();
-                            DataLanguageSetting.HTML.HTML==true? global.Fca.Require.Web.listen(global.Fca.Require.Web.get('DFP')) : global.Fca.Require.Web = null;
+                            // DataLanguageSetting.HTML.HTML==true? global.Fca.Require.Web.listen(global.Fca.Require.Web.get('DFP')) : global.Fca.Require.Web = null;
                         callback(null, api);
                     };
                 }).catch(async function(e) {
@@ -1189,9 +1189,9 @@ try {
                     logger.Warning(Language.AutoCheckUpdateFailure)
                         logger.Normal(getText(Language.LocalVersion,global.Fca.Version));
                             logger.Normal(getText(Language.CountTime,global.Fca.Data.CountTime()))   
-                        logger.Normal(Language.WishMessage[Math.floor(Math.random()*Language.WishMessage.length)]);
+                        // logger.Normal(Language.WishMessage[Math.floor(Math.random()*Language.WishMessage.length)]);
                         require('./Extra/ExtraUptimeRobot')();
-                    DataLanguageSetting.HTML.HTML==true? global.Fca.Require.Web.listen(global.Fca.Require.Web.get('DFP')) : global.Fca.Require.Web = null;
+                    // DataLanguageSetting.HTML.HTML==true? global.Fca.Require.Web.listen(global.Fca.Require.Web.get('DFP')) : global.Fca.Require.Web = null;
                 callback(null, api);
                 });
             }).catch(function(/** @type {{ error: any; }} */e) {
@@ -1285,7 +1285,7 @@ function login(loginData, options, callback) {
         emitReady: false,
         userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8"
     };
-    
+
     if (loginData.email && loginData.password) {
         setOptions(globalOptions, {
             logLevel: "silent",
@@ -1311,7 +1311,7 @@ function login(loginData, options, callback) {
         };
         callback = prCallback;
     }
-    
+
     (async function() {
         var Premium = require("./Extra/Src/Premium");
         global.Fca.Data.PremText = await Premium(global.Fca.Require.Security.create().uuid) || "Bạn Đang Sài Phiên Bản: Free !";
