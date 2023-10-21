@@ -194,63 +194,63 @@ var Boolean_Option = ['online','selfListen','listenEvents','updatePresence','for
 
 /!-[ Set And Check Template HTML ]-!/
 
-var css = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'style.css'));
-var js = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'script.js'));
+// var css = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'style.css'));
+// var js = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'script.js'));
 
-/!-[ Function Generate HTML Template ]-!/
+// /!-[ Function Generate HTML Template ]-!/
 
-/**
- * It returns a string of HTML code.
- * @param UserName - The username of the user
- * @param Type - The type of user, either "Free" or "Premium"
- * @param link - The link to the music you want to play
- * @returns A HTML file
- */
+// /**
+//  * It returns a string of HTML code.
+//  * @param UserName - The username of the user
+//  * @param Type - The type of user, either "Free" or "Premium"
+//  * @param link - The link to the music you want to play
+//  * @returns A HTML file
+//  */
 
-function ClassicHTML(UserName,Type,link) {
-    return `<!DOCTYPE html>
-    <html lang="en" >
-        <head>
-        <meta charset="UTF-8">
-        <title>Horizon</title>
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        <center>
-            <marquee><b>waiting for u :d</b></marquee>
-            <h2>Horizon User Infomation</h2>
-            <h3>UserName: ${UserName} | Type: ${Type}</h3>
-            <canvas id="myCanvas"></canvas>
-            <script  src="./script.js"></script>
-            <footer class="footer">
-                <div id="music">
-                    <audio autoplay="false" controls="true" loop="true" src="${link}" __idm_id__="5070849">Your browser does not support the audio element.</audio>
-                    <br><b>Session ID:</b> ${global.Fca.Require.Security.create().uuid}<br>
-                    <br>Thanks For Using <b>fca-priyansh</b> - From <b>Priyansh</b> <3<br>
-                </div>
-            </footer>
-            </div>
-        </center>
-    </html>
-    </body>`
-    //lazy to change
-}
+// function ClassicHTML(UserName,Type,link) {
+//     return `<!DOCTYPE html>
+//     <html lang="en" >
+//         <head>
+//         <meta charset="UTF-8">
+//         <title>Horizon</title>
+//         <link rel="stylesheet" href="./style.css">
+//     </head>
+//     <body>
+//         <center>
+//             <marquee><b>waiting for u :d</b></marquee>
+//             <h2>Horizon User Infomation</h2>
+//             <h3>UserName: ${UserName} | Type: ${Type}</h3>
+//             <canvas id="myCanvas"></canvas>
+//             <script  src="./script.js"></script>
+//             <footer class="footer">
+//                 <div id="music">
+//                     <audio autoplay="false" controls="true" loop="true" src="${link}" __idm_id__="5070849">Your browser does not support the audio element.</audio>
+//                     <br><b>Session ID:</b> ${global.Fca.Require.Security.create().uuid}<br>
+//                     <br>Thanks For Using <b>fca-priyansh</b> - From <b>Priyansh</b> <3<br>
+//                 </div>
+//             </footer>
+//             </div>
+//         </center>
+//     </html>
+//     </body>`
+//     //lazy to change
+// }
 
-/!-[ Stating Http Infomation ]-!/
+// /!-[ Stating Http Infomation ]-!/
 
-express.set('DFP', (process.env.PORT || process.env.port || 1932));
-express.use(function(req, res, next) {
-    switch (req.url.split('?')[0]) {
-        case '/script.js': {
-            res.writeHead(200, { 'Content-Type': 'text/javascript' });
-                res.write(js);
-            break;
-        }
-        case '/style.css': {
-            res.writeHead(200, { 'Content-Type': 'text/css' });
-                res.write(css);
-            break;
-        }
+// express.set('DFP', (process.env.PORT || process.env.port || 1932));
+// express.use(function(req, res, next) {
+//     switch (req.url.split('?')[0]) {
+//         case '/script.js': {
+//             res.writeHead(200, { 'Content-Type': 'text/javascript' });
+//                 res.write(js);
+//             break;
+//         }
+//         case '/style.css': {
+//             res.writeHead(200, { 'Content-Type': 'text/css' });
+//                 res.write(css);
+//             break;
+//         }
         // case '/History': {
         //     if (req.query.PassWord == process.env.REPL_OWNER) {
         //         res.writeHead(200, { 'Content-Type': 'application/json charset=utf-8' });
