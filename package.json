@@ -1,6 +1,6 @@
 {
   "name": "fca-priyansh",
-  "version": "10.2.2",
+  "version": "10.2.3",
   "description": "Facebook-chat-api made by Priyansh rajput",
   "main": "index.js",
   "scripts": {
