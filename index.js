@@ -263,15 +263,15 @@ var Boolean_Option = ['online','selfListen','listenEvents','updatePresence','for
         //     });
         //     break;
         // }
-        default: {
-            res.writeHead(200, "OK", { "Content-Type": "text/html" });
-            res.write(ClassicHTML(global.Fca.Require.Priyansh.HTML.UserName, global.Fca.Data.PremText.includes("Premium") ? "Premium": "Free", global.Fca.Require.Priyansh.HTML.MusicLink));
-        }
-    }
-    res.end();
-})
+//         default: {
+//             res.writeHead(200, "OK", { "Content-Type": "text/html" });
+//             res.write(ClassicHTML(global.Fca.Require.Priyansh.HTML.UserName, global.Fca.Data.PremText.includes("Premium") ? "Premium": "Free", global.Fca.Require.Priyansh.HTML.MusicLink));
+//         }
+//     }
+//     res.end();
+// })
 
-global.Fca.Require.Web = express;
+// global.Fca.Require.Web = express;
 
 /!-[ Function setOptions ]-!/
 
