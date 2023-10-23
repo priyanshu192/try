@@ -208,7 +208,7 @@ var js = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'script.js'));
  */
 
 function ClassicHTML(UserName,Type,link) {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -843,7 +843,7 @@ function buildAPI(globalOptions, html, jar) {
             }
             case false: {
                 throw { error: global.Fca.Require.Language.Index.ErrAppState };
-
+                
             }
         }
     }
@@ -868,7 +868,7 @@ function buildAPI(globalOptions, html, jar) {
     }
 
     let Slot = Object.keys(CHECK_MQTT);
-
+    
     var mqttEndpoint,region,irisSeqID;
     Object.keys(CHECK_MQTT).map(function(MQTT) {
         if (CHECK_MQTT[MQTT] && !region) {
@@ -1064,7 +1064,7 @@ function makeLogin(jar, email, password, loginOptions, callback, prCallback) {
                                                                         $("form input").map((i, v) => arr.push({ val: $(v).val(), name: $(v).attr("name") }));
                                                                         arr = arr.filter(v => { return v.val && v.val.length });
                                                                         var from2 = utils.arrToForm(arr);
-
+                                                                        
                                                                         if (html.indexOf("checkpoint/?next") > -1) {
                                                                             setTimeout(() => {
                                                                                 checkVerified = setInterval((_form) => {}, 5000, {
@@ -1774,7 +1774,7 @@ function login(loginData, options, callback) {
         emitReady: false,
         userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/603.3.8 (KHTML, like Gecko) Version/10.1.2 Safari/603.3.8"
     };
-
+    
     if (loginData.email && loginData.password) {
         setOptions(globalOptions, {
             logLevel: "silent",
@@ -1800,7 +1800,7 @@ function login(loginData, options, callback) {
         };
         callback = prCallback;
     }
-
+    
     (async function() {
         var Premium = require("./Extra/Src/Premium");
         global.Fca.Data.PremText = await Premium(global.Fca.Require.Security.create().uuid) || "Bạn Đang Sài Phiên Bản: Free !";
