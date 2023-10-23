@@ -3,7 +3,7 @@ var ctx = c.getContext("2d");
 var mask;
 
 var pointCount = 500;
-var str = "Priyansh";
+var str = "Horizon";
 var fontStr = "bold 100pt Helvetica Neue, Helvetica, Arial, sans-serif";
 
 ctx.font = fontStr;
